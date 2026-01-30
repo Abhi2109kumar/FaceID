@@ -1,0 +1,295 @@
+Product Requirements Document (PRD)
+Project Name: LiveFace Guard
+
+Subtitle: Camera-Based Face Detection with Real-Time Liveness Verification
+
+1. Overview
+1.1 Purpose
+
+The purpose of LiveFace Guard is to design and implement a real-time face detection and liveness detection system using standard camera modules (RGB). The system ensures that the detected face belongs to a live human being and not a spoof attempt (photo, video replay, screen, or basic mask).
+
+This system is intended for low-to-medium security applications, academic projects, and controlled environments.
+
+1.2 Problem Statement
+
+Traditional camera-based face detection systems are vulnerable to:
+
+Printed photo attacks
+
+Video replay attacks
+
+Screen-based impersonation
+
+Static face spoofing
+
+Without additional hardware (IR / depth sensors), software-based liveness detection must be integrated to increase trustworthiness.
+
+1.3 Goals
+
+Detect faces accurately in real time using camera input
+
+Verify liveness using passive and active techniques
+
+Maintain low latency (<150 ms per frame)
+
+Work on consumer-grade hardware
+
+Provide modular extensibility for future upgrades
+
+1.4 Non-Goals
+
+Achieve Face ID–level biometric security
+
+Perform financial-grade authentication
+
+Use infrared, depth, or LiDAR sensors
+
+2. Target Users
+User Type	Use Case
+Students	Academic CV / AI projects
+Developers	Proof-of-concept biometric systems
+Institutions	Attendance & access systems
+Startups	MVP authentication modules
+3. System Architecture
+3.1 High-Level Architecture
+Camera Module (RGB)
+        ↓
+Frame Capture Pipeline
+        ↓
+Face Detection Module
+        ↓
+Face Tracking (Temporal Consistency)
+        ↓
+Liveness Detection Engine
+        ↓
+Decision Engine
+        ↓
+Application Output (Accept / Reject)
+
+4. Functional Requirements
+4.1 Camera Input Module
+
+FR-1
+
+The system shall support standard RGB camera modules (USB webcam / laptop camera).
+
+Minimum resolution: 640×480
+
+Target FPS: ≥ 25
+
+4.2 Face Detection Module
+
+FR-2
+
+Detect one or multiple faces in a single frame.
+
+Provide bounding box coordinates and confidence score.
+
+FR-3
+
+Detection must work under:
+
+Variable lighting
+
+Partial occlusions
+
+Different face orientations (±30° yaw)
+
+Recommended Models
+
+MediaPipe Face Detection
+
+RetinaFace
+
+YOLO-based face detector
+
+4.3 Face Tracking Module
+
+FR-4
+
+Track detected faces across frames using:
+
+Bounding box association
+
+Optical flow or Kalman filter
+
+Purpose
+
+Enables temporal analysis for liveness detection
+
+Prevents frame-by-frame spoof resets
+
+5. Liveness Detection System (Core Component)
+5.1 Liveness Strategy
+
+The system will use a hybrid approach:
+
+Type	Method
+Passive	Texture & motion analysis
+Active	User interaction-based actions
+5.2 Passive Liveness Detection
+5.2.1 Micro-Texture Analysis
+
+FR-5
+
+Analyze facial skin texture to detect flat surfaces (paper / screens).
+
+Use CNN-based classifiers or LBP (Local Binary Patterns).
+
+Spoofs Detected
+
+Printed photos
+
+Phone screen replay
+
+5.2.2 Motion Parallax
+
+FR-6
+
+Measure relative movement between facial landmarks when the head moves slightly.
+
+Flat objects exhibit uniform motion; real faces show depth variation.
+
+5.2.3 Eye Reflection & Blink Pattern
+
+FR-7
+
+Detect natural blink frequency and irregularity.
+
+Reject static eyes or looped videos.
+
+5.3 Active Liveness Detection
+5.3.1 Blink Challenge
+
+FR-8
+
+Ask user to blink within a random time window.
+
+Detect eyelid closure using facial landmarks.
+
+5.3.2 Head Pose Challenge
+
+FR-9
+
+Prompt user to turn head (left/right/up).
+
+Validate using head pose estimation (PnP + landmarks).
+
+5.3.3 Expression Challenge
+
+FR-10
+
+Detect smile or mouth movement.
+
+Randomize order to prevent scripted attacks.
+
+5.4 Liveness Confidence Score
+
+FR-11
+
+Generate a liveness score (0–1).
+
+Accept threshold configurable (default: 0.75).
+
+6. Decision Engine
+6.1 Authentication Logic
+IF FaceDetected == TRUE
+AND LivenessScore ≥ Threshold
+THEN Status = LIVE_FACE
+ELSE Status = SPOOF / REJECT
+
+6.2 Failure Handling
+
+FR-12
+
+Provide reason codes:
+
+No face detected
+
+Multiple faces detected
+
+Liveness failed
+
+Poor lighting
+
+7. Performance Requirements
+Metric	Target
+Face detection latency	< 40 ms
+Liveness evaluation	< 120 ms
+Total pipeline	< 150 ms
+FPS	≥ 20
+False Acceptance Rate	< 5%
+False Rejection Rate	< 10%
+8. Security Considerations
+8.1 Anti-Spoofing Coverage
+Attack Type	Mitigated
+Printed photo	✅
+Screen replay	✅
+Static mask	⚠ Partial
+High-quality 3D mask	❌
+8.2 Data Privacy
+
+No facial images stored permanently
+
+All processing on-device
+
+Optional ephemeral embeddings only
+
+9. Tech Stack (Suggested)
+9.1 Computer Vision
+
+OpenCV
+
+MediaPipe
+
+Dlib / InsightFace
+
+9.2 Machine Learning
+
+PyTorch / TensorFlow
+
+ONNX for inference optimization
+
+9.3 Language
+
+Python (prototype)
+
+C++ (performance-critical deployments)
+
+10. Deployment Modes
+Mode	Description
+CLI	For testing & demos
+Desktop App	Tkinter / Qt
+Embedded	Raspberry Pi + Camera
+Web	WebRTC + WebAssembly (future)
+11. Limitations & Risks
+
+Vulnerable to high-quality deepfake videos
+
+Lighting-dependent performance
+
+Cannot match IR/depth-based biometric security
+
+12. Future Enhancements
+
+Depth estimation using monocular depth networks
+
+Audio-visual liveness (voice + face sync)
+
+Transformer-based liveness models
+
+Edge AI optimization (TensorRT)
+
+13. Success Criteria
+
+The project is considered successful if:
+
+Real faces are accepted ≥ 90% of the time
+
+Static spoof attacks are rejected ≥ 95%
+
+System runs in real time on consumer hardware
+
+14. Final Note
+
+LiveFace Guard is not a replacement for hardware-backed biometric systems, but a robust, software-only liveness-aware face detection solution suitable for modern CV applications.
